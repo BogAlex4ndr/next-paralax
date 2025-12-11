@@ -93,11 +93,11 @@ const Table = () => {
                                 key={row.rank}
                                 className={`${gridColumns} odd:bg-[#C9D9FF25]`}
                             >
-                                <td className="flex items-center py-4">
+                                <td className="flex items-center justify-between py-4">
                                     <span className="pl-6 text-gray-500">
                                         {renderChangeIcon(row.change)}
                                     </span>
-                                    <span className="pl-6 text-white">{row.rank}</span>
+                                    <span className="px-4 text-white">{row.rank}</span>
                                 </td>
 
                                 <td className="pl-4 py-4 flex items-center">

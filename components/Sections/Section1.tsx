@@ -16,7 +16,7 @@ const Section1 = ({ scrollContainerRef }: { scrollContainerRef: RefObject<HTMLDi
     } = useSectionAnimations(scrollContainerRef);
 
     return (
-        <section className="h-[130%] lg:h-[130%] w-full snap-start flex flex-col relative px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20">
+        <section className="h-[120%] lg:h-[130%] w-full snap-start flex flex-col relative px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20">
             <div className="flex mx-auto mt-8 justify-self-center sticky top-8 z-50 gap-6">
                 <Button size="md" variant="text">How It Works</Button>
                 <Button size="md" variant="outline">Buy Salt AI</Button>
@@ -36,7 +36,7 @@ const Section1 = ({ scrollContainerRef }: { scrollContainerRef: RefObject<HTMLDi
                     <Button size="lg" variant="text">Try Now</Button>
                 </div>
             </motion.div>
-            <div className="h-160 md:h-160 lg:h-180"></div>
+            <div className="h-160 md:h-120 xl:h-160 2xl:h-180"></div>
             <motion.section
                 className="flex flex-col xl:flex-row items-end mt-19 w-full justify-between gap-4 xl:gap-8 pb-12"
                 variants={container}

@@ -11,9 +11,10 @@ const StatCard = ({ value, label }: StatCardProps) => {
             className="
                 rounded-full
                 px-6 py-3
-                sm:px-8 sm:py-4
-                md:px-10 md:py-5
-                lg:px-12 lg:py-6
+                sm:px-6 sm:py-2
+                lg:px-8 md:py-2
+                xl:px-10 xl:py-2
+                2xl:px-12 lg:py-6
                 flex flex-col items-center
                 text-white
                 bg-[linear-gradient(110deg,#9C348820_0%,#FC6F3220_50%,#FF4A5920_100%)]

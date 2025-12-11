@@ -2,7 +2,7 @@ import { RefObject, useEffect, useState } from 'react';
 import { easeInOut, useScroll, useTransform } from 'framer-motion';
 
 export const useSectionAnimations = (scrollContainerRef: RefObject<HTMLDivElement | null>) => {
-    const [size, setSize] = useState<'mobile' | 'tablet' | 'desktop' | 'laptop'>('desktop');
+    const [size, setSize] = useState<'mobile' | 'tablet' | 'desktop' | 'laptop' | 'laptop_s'>('desktop');
 
     const { scrollY } = useScroll({
         container: scrollContainerRef,
@@ -13,7 +13,8 @@ export const useSectionAnimations = (scrollContainerRef: RefObject<HTMLDivElemen
             const w = window.innerWidth;
 
             if (w <= 640) setSize('mobile');
-            else if (w <= 1280) setSize('tablet');
+            else if (w <= 1024) setSize('tablet');
+            else if (w <= 1280) setSize('laptop_s');
             else if (w <= 1450) setSize('laptop');
             else setSize('desktop');
         };
@@ -25,8 +26,9 @@ export const useSectionAnimations = (scrollContainerRef: RefObject<HTMLDivElemen
 
     // ---------- FONT SIZE LOGIC ----------
     const fontSizeMap = {
-        mobile: ["32px", "30px"],
-        tablet: ["64px", "60px"],
+        mobile: ["28px", "26px"],
+        tablet: ["54px", "52px"],
+        laptop_s: ["62px", "60px"],
         laptop: ["82px", "80px"],
         desktop: ["128px", "124px"]
     };
@@ -50,13 +52,20 @@ export const useSectionAnimations = (scrollContainerRef: RefObject<HTMLDivElemen
     );
 
     // ---------- TITLE Y OFFSET ----------
+    const yMap = {
+        mobile: 60,
+        tablet: 140,
+        laptop_s: 180,
+        laptop: 215,
+        desktop: 250
+    };
+
     const animatedY = useTransform(
         scrollY,
         [0, 500],
-        [0, size === 'mobile' ? 60 : size === 'tablet' ? 140 : 215],
+        [0, yMap[size as keyof typeof yMap] || 215],
         { ease: easeInOut }
     );
-
     // ---------- MOTION VARIANTS ----------
     const container = {
         hidden: { opacity: 0 },
@@ -66,11 +75,19 @@ export const useSectionAnimations = (scrollContainerRef: RefObject<HTMLDivElemen
         },
     };
 
+    const yItemMap = {
+        mobile: -10,
+        tablet: -160,
+        laptop_s: -120,
+        laptop: -160,
+        desktop: -200
+    };
+
     const item = {
         hidden: { opacity: 0, y: 1200 },
         show: {
             opacity: 1,
-            y: size === 'mobile' ? -10 : size === 'tablet' ? -60 : -200,
+            y: yItemMap[size as keyof typeof yItemMap] || -200,
             transition: {
                 duration: 0.6,
                 ease: easeInOut,
